@@ -13,9 +13,9 @@ Code. Compile. Flash. From Any Browser. Zero Installs.
 [![PRs](https://img.shields.io/badge/PRs-Welcome-f59e0b?style=for-the-badge&logo=github)](https://github.com/ghosthets/TinyBin/pulls)
 
 📦 **Repo:** [github.com/ghosthets/TinyBin](https://github.com/ghosthets/TinyBin)
-
+<img src="./assets/icon.jpg" width="400">
 </div>
-<img src="./assets/icon.jpg" width="800">
+
 ## Overview
 
 **TinyBin IDE** ek complete browser-based development environment hai microcontroller firmware ke liye. Ye Arduino IDE, PlatformIO, VS Code ka combination hai — lekin sirf ek browser tab mein. Koi installation nahi, koi setup nahi, koi database nahi.
