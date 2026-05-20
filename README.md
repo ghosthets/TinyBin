@@ -1,8 +1,24 @@
-# TinyBin IDE v3.0 — Complete Documentation
+<div align="center">
+# TinyBin v3.0
 
-> **Browser-based IDE for Microcontroller Firmware Development**  
-> Code. Compile. Flash. From Any Browser. Zero Installs.  
-> 📦 **Repo:** [github.com/ghosthets/TinyBin](https://github.com/ghosthets/TinyBin)
+**Browser-based IDE for Microcontroller Firmware Development**
+
+Code. Compile. Flash. From Any Browser. Zero Installs.
+
+[![Status](https://img.shields.io/badge/Status-Production%20Ready-10b981?style=for-the-badge&logo=rocket)](https://github.com/ghosthets/TinyBin)
+[![Boards](https://img.shields.io/badge/Boards-150%2B-0ea5e9?style=for-the-badge&logo=arduino)](https://github.com/ghosthets/TinyBin)
+[![Libraries](https://img.shields.io/badge/Libraries-40%2B-f97316?style=for-the-badge&logo=github)](https://github.com/ghosthets/TinyBin)
+[![License](https://img.shields.io/badge/License-GPL%20v3-a855f7?style=for-the-badge&logo=open-source-initiative)](https://github.com/ghosthets/TinyBin/blob/main/LICENSE)
+[![PHP](https://img.shields.io/badge/PHP-7.4%2B-777bb3?style=for-the-badge&logo=php)](https://php.net)
+[![PRs](https://img.shields.io/badge/PRs-Welcome-f59e0b?style=for-the-badge&logo=github)](https://github.com/ghosthets/TinyBin/pulls)
+
+📦 **Repo:** [github.com/ghosthets/TinyBin](https://github.com/ghosthets/TinyBin)
+
+</div>
+<img src="./assets/icon.jpg" width="800">
+## Overview
+
+**TinyBin IDE** ek complete browser-based development environment hai microcontroller firmware ke liye. Ye Arduino IDE, PlatformIO, VS Code ka combination hai — lekin sirf ek browser tab mein. Koi installation nahi, koi setup nahi, koi database nahi.
 
 ---
 
@@ -36,10 +52,6 @@
 26. [Troubleshooting](#troubleshooting)
 
 ---
-
-## Overview
-
-**TinyBin IDE** ek complete browser-based development environment hai microcontroller firmware ke liye. Ye Arduino IDE, PlatformIO, VS Code ka combination hai — lekin sirf ek browser tab mein. Koi installation nahi, koi setup nahi, koi database nahi.
 
 ### Key Numbers
 
