@@ -1,5 +1,5 @@
 <div align="center">
-![TinyBin Logo](logo.svg)
+<img src="./assets/demo.gif" width="400">
 <h2>TinyBin IDE</h2>
 
 **Browser-based IDE for Microcontroller Firmware Development**
