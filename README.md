@@ -1,6 +1,6 @@
 <div align="center">
 <img src="https://raw.githubusercontent.com/ghosthets/TinyBin/main/logo.svg" width="72" height="72" alt="TinyBin Logo"/>
-**Browser-based IDE for Microcontroller Firmware Development**
+<h1>TinyBin IDE</h1>
 
 Code. Compile. Flash. From Any Browser. Zero Installs.
 
