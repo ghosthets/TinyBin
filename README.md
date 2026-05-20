@@ -12,7 +12,6 @@ Code. Compile. Flash. From Any Browser. Zero Installs.
 [![PHP](https://img.shields.io/badge/PHP-7.4%2B-777bb3?style=for-the-badge&logo=php)](https://php.net)
 [![PRs](https://img.shields.io/badge/PRs-Welcome-f59e0b?style=for-the-badge&logo=github)](https://github.com/ghosthets/TinyBin/pulls)
 
-📦 **Repo:** [github.com/ghosthets/TinyBin](https://github.com/ghosthets/TinyBin)
 <img src="./assets/icon.jpg" width="400">
 </div>
 
