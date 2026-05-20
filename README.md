@@ -1,4 +1,5 @@
 <div align="center">
+![TinyBin Logo](logo.svg)
 # TinyBin v3.0
 
 **Browser-based IDE for Microcontroller Firmware Development**
@@ -11,19 +12,6 @@ Code. Compile. Flash. From Any Browser. Zero Installs.
 [![License](https://img.shields.io/badge/License-GPL%20v3-a855f7?style=for-the-badge&logo=open-source-initiative)](https://github.com/ghosthets/TinyBin/blob/main/LICENSE)
 [![PHP](https://img.shields.io/badge/PHP-7.4%2B-777bb3?style=for-the-badge&logo=php)](https://php.net)
 [![PRs](https://img.shields.io/badge/PRs-Welcome-f59e0b?style=for-the-badge&logo=github)](https://github.com/ghosthets/TinyBin/pulls)
-
-<svg width="72" height="72" viewBox="0 0 36 36" fill="none">
-  <rect width="36" height="36" rx="10" fill="url(#lg2)" opacity="0.2"/>
-  <path d="M11 11l7 7-7 7V11z" fill="#00d4ff"/>
-  <path d="M20 11l7 7-7 7V11z" fill="#00d4ff" opacity="0.4"/>
-  <defs>
-    <linearGradient id="lg2" x1="0" y1="0" x2="36" y2="36">
-      <stop stop-color="#00d4ff"/>
-      <stop offset="1" stop-color="#0066ff"/>
-    </linearGradient>
-  </defs>
-</svg>
-</div>
 
 ## Overview
 
