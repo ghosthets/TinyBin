@@ -1,7 +1,5 @@
 <div align="center">
-<img src="./assets/demo.gif" width="400">
-<h2>TinyBin IDE</h2>
-
+<img src="https://raw.githubusercontent.com/ghosthets/TinyBin/main/logo.svg" width="72" height="72" alt="TinyBin Logo"/>
 **Browser-based IDE for Microcontroller Firmware Development**
 
 Code. Compile. Flash. From Any Browser. Zero Installs.
