@@ -1,5 +1,6 @@
 <div align="center">
-# TinyBin v3.0
+![TinyBin Logo](logo.svg)
+<h2>TinyBin IDE</h2>
 
 **Browser-based IDE for Microcontroller Firmware Development**
 
