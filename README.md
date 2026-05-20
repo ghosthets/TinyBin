@@ -5,7 +5,7 @@
 
 Code. Compile. Flash. From Any Browser. Zero Installs.
 
-[![Status](https://img.shields.io/badge/Status-Production%20Ready-10b981?style=for-the-badge&logo=rocket)](https://github.com/ghosthets/TinyBin)
+[![Status](https://img.shields.io/badge/Status-Build-10b981?style=for-the-badge&logo=rocket)](https://github.com/ghosthets/TinyBin)
 [![Boards](https://img.shields.io/badge/Boards-150%2B-0ea5e9?style=for-the-badge&logo=arduino)](https://github.com/ghosthets/TinyBin)
 [![Libraries](https://img.shields.io/badge/Libraries-40%2B-f97316?style=for-the-badge&logo=github)](https://github.com/ghosthets/TinyBin)
 [![License](https://img.shields.io/badge/License-GPL%20v3-a855f7?style=for-the-badge&logo=open-source-initiative)](https://github.com/ghosthets/TinyBin/blob/main/LICENSE)
