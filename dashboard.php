@@ -188,14 +188,7 @@
 
             <!-- Libraries Panel -->
             <div class="sidebar-panel" id="panel-libraries">
-                <div class="panel-header">
-                    <span>LIBRARIES</span>
-                    <div class="panel-actions">
-                        <button class="panel-btn" onclick="LibraryFetcher.showAddUrlModal()" title="Add from GitHub URL">
-                            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M14 1H2a1 1 0 00-1 1v12a1 1 0 001 1h12a1 1 0 001-1V2a1 1 0 00-1-1zM7 12H4v-1h3V8h1v3h3v1H8v3H7v-3z"/></svg>
-                        </button>
-                    </div>
-                </div>
+                <div class="panel-header"><span>LIBRARIES</span></div>
                 <div class="panel-content">
                     <input type="text" id="libSearch" placeholder="Search libraries..." class="search-input" oninput="IDE.searchLibraries(this.value)">
                     <div id="libraryList" class="library-list">
@@ -406,15 +399,6 @@
                         <p class="settings-desc">Increases API rate limits</p>
                         <input type="password" id="githubToken" placeholder="ghp_xxxxxxxxxxxx" class="settings-input">
                         <button class="btn btn-sm btn-ghost btn-block" onclick="IDE.saveGitHubToken()" style="margin-top:6px">Save Token</button>
-                    </div>
-                    <div class="settings-section"><h4>Library Manager</h4>
-                        <p class="settings-desc">Fetch any Arduino library from GitHub</p>
-                        <div class="form-group"><label>GitHub Repository URL</label><input type="url" id="manageLibUrl" placeholder="https://github.com/owner/repo" class="settings-input"></div>
-                        <div class="form-group"><label>Branch</label><input type="text" id="manageLibBranch" value="main" placeholder="main or master" class="settings-input"></div>
-                        <button class="btn btn-sm btn-neon btn-block" onclick="LibraryFetcher.quickFetchFromManage()">
-                            <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M14 1H2a1 1 0 00-1 1v12a1 1 0 001 1h12a1 1 0 001-1V2a1 1 0 00-1-1zM7 12H4v-1h3V8h1v3h3v1H8v3H7v-3z"/></svg>
-                            Fetch & Add Library
-                        </button>
                     </div>
                     <div class="settings-section"><h4>Serial Monitor</h4>
                         <p class="settings-desc">Configure serial monitor settings</p>
@@ -721,8 +705,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.32.3/theme-tomorrow_night.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.32.3/ext-language_tools.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.32.3/ext-searchbox.min.js"></script>
-<script src="assets/js/wasm-compiler.js"></script>
-<script src="assets/js/esptool.js"></script>
 <script src="assets/js/ide.js"></script>
 </body>
 </html>

@@ -333,7 +333,7 @@
             </div>
             <div class="footer-col"><h4>Product</h4><a href="dashboard.php">IDE</a><a href="#features">Features</a><a href="#boards">Boards</a><a href="blog.php">Blog</a></div>
             <div class="footer-col"><h4>Resources</h4><a href="about.php">About</a><a href="privacy.php">Privacy</a><a href="terms.php">Terms</a></div>
-            <div class="footer-col"><h4>Community</h4><a href="https://github.com/ghosthets/TinyBin" target="_blank" rel="noopener">GitHub</a><a href="https://discord.com" target="_blank" rel="noopener">Discord</a><a href="mailto:hello@tinybin.dev">Contact</a></div>
+            <div class="footer-col"><h4>Community</h4><a href="https://github.com" target="_blank" rel="noopener">GitHub</a><a href="https://discord.com" target="_blank" rel="noopener">Discord</a><a href="mailto:hello@tinybin.dev">Contact</a></div>
         </div>
         <div class="footer-bottom">
             <p>&copy; 2026 TinyBin. All rights reserved.</p>

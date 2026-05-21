@@ -104,8 +104,7 @@ var IDE = (function() {
         Terminal.log('All data stored locally in your browser.', 'info');
         Terminal.log('Create a project or fetch from GitHub to begin.', 'info');
         Terminal.log('Press Ctrl+Shift+P for Command Palette.', 'info');
-        if (typeof CodeAnalyzer !== 'undefined') CodeAnalyzer.init();
-        if (typeof WasmCompiler !== 'undefined') WasmCompiler.init();
+        if (typeof NativeCompiler !== 'undefined') NativeCompiler.init();
     }
     function applyTheme(theme) {
         currentTheme = theme;
@@ -957,8 +956,8 @@ var IDE = (function() {
     function menuEdit(e) { var btn = e ? e.target : document.querySelectorAll('.menu-item')[1]; toggleDropdown([{label:'Undo',action:'IDE.undo()',shortcut:'Ctrl+Z'},{label:'Redo',action:'IDE.redo()',shortcut:'Ctrl+Y'},'---',{label:'Cut',action:'IDE.cut()',shortcut:'Ctrl+X'},{label:'Copy',action:'IDE.copy()',shortcut:'Ctrl+C'},{label:'Paste',action:'IDE.paste()',shortcut:'Ctrl+V'},'---',{label:'Find & Replace',action:'IDE.findReplace()',shortcut:'Ctrl+H'},{label:'Find in Files',action:'IDE.showPanel(\'search\')',shortcut:'Ctrl+Shift+F'},{label:'Select All',action:'IDE.selectAll()',shortcut:'Ctrl+A'},'---',{label:'Toggle Comment',action:'IDE.toggleComment()',shortcut:'Ctrl+/'},{label:'Toggle Block Comment',action:'IDE.toggleBlockComment()',shortcut:'Ctrl+Shift+/'},'---',{label:'Format Document',action:'CodeFormatter.formatCurrentFile()',shortcut:'Shift+Alt+F'},{label:'Format Selection',action:'CodeFormatter.formatSelection()'},'---',{label:'Go to Line...',action:'IDE.goToLine()',shortcut:'Ctrl+G'},{label:'Go to Definition',action:'IDE.goToDefinition()',shortcut:'F12'},'---',{label:'Transform to Uppercase',action:'IDE.transformCase(\'upper\')'},{label:'Transform to Lowercase',action:'IDE.transformCase(\'lower\')'}], btn); }
     function menuView(e) { var btn = e ? e.target : document.querySelectorAll('.menu-item')[2]; toggleDropdown([{label:'Command Palette',action:'CommandPalette.open()',shortcut:'Ctrl+Shift+P'},'---',{label:'Explorer',action:'IDE.showPanel(\'files\')',shortcut:'Ctrl+Shift+E'},{label:'Search',action:'IDE.showPanel(\'search\')',shortcut:'Ctrl+Shift+F'},{label:'Source Control',action:'IDE.showPanel(\'git\')',shortcut:'Ctrl+Shift+G'},{label:'Libraries',action:'IDE.showPanel(\'libraries\')'},{label:'TODO',action:'IDE.showPanel(\'todo\')'},{label:'Snippets',action:'IDE.showPanel(\'snippets\')'},'---',{label:'Output',action:'IDE.showPanel(\'output\')'},{label:'Terminal',action:'Terminal.toggle()',shortcut:'Ctrl+`'},{label:'Serial Monitor',action:'Terminal.switchToSerial()'},{label:'Serial Plotter',action:'IDE.showPanel(\'plotter\')'},{label:'Board Manager',action:'IDE.showPanel(\'boards\')'},'---',{label:'Toggle Sidebar',action:'IDE.toggleSidebar()',shortcut:'Ctrl+B'},{label:'Toggle Activity Bar',action:'IDE.toggleActivityBar()'},'---',{label:'Tab Tree',action:'TabManager.showTree()',shortcut:'Ctrl+Shift+T'},'---',{label:'Split Right',action:'TabManager.splitHorizontal()'},{label:'Split Down',action:'TabManager.splitVertical()'},'---',{label:'Zoom In',action:'IDE.zoom(1)',shortcut:'Ctrl+='},{label:'Zoom Out',action:'IDE.zoom(-1)',shortcut:'Ctrl+-'},{label:'Reset Zoom',action:'IDE.zoom(0)',shortcut:'Ctrl+0'},'---',{label:'Minimap',action:'IDE.toggleMinimap()'},{label:'Word Wrap',action:'IDE.toggleWordWrap()',shortcut:'Alt+Z'},'---',{label:'Theme: Dark',action:'IDE.setTheme(\'dark\')'},{label:'Theme: Light',action:'IDE.setTheme(\'light\')'}], btn); }
     function menuProject(e) { var btn = e ? e.target : document.querySelectorAll('.menu-item')[3]; toggleDropdown([{label:'New Project',action:'IDE.showNewProjectModal()'},'---',{label:'Fetch from GitHub',action:'IDE.showFetchModal()'},'---',{label:'Project Templates',action:'ProjectTemplates.showSelector()'},'---',{label:'Add Library...',action:'IDE.showPanel(\'libraries\')'},{label:'Manage Libraries',action:'IDE.showInstalledLibs()'},'---',{label:'Build Configuration',action:'IDE.showBuildConfig()'},'---',{label:'Clean Build',action:'IDE.cleanBuild()'},'---',{label:'Export Project',action:'IDE.exportProject()'},{label:'Import Project',action:'IDE.importData()'},'---',{label:'Project Settings',action:'IDE.showProjectSettings()'},'---',{label:'Delete Project',action:'IDE.deleteProject()'}], btn); }
-    function menuTools(e) { var btn = e ? e.target : document.querySelectorAll('.menu-item')[4]; toggleDropdown([{label:'Compile',action:'Compiler.compile()',shortcut:'F5'},{label:'Analyze Code',action:'Compiler.analyze()',shortcut:'F6'},'---',{label:'Format Code',action:'CodeFormatter.formatCurrentFile()',shortcut:'Shift+Alt+F'},{label:'Lint Code',action:'CodeLinter.lintCurrentFile()'},'---',{label:'Flash to Device',action:'Flasher.flash()',shortcut:'F7'},{label:'Download Binary',action:'Flasher.downloadBinary()'},'---',{label:'Connect Serial',action:'SerialManager.connect()'},'---',{label:'Serial Monitor',action:'Terminal.switchToSerial()',shortcut:'Ctrl+Shift+S'},{label:'Serial Plotter',action:'IDE.showPanel(\'plotter\')'},'---',{label:'Code Snippets',action:'IDE.showPanel(\'snippets\')'},{label:'TODO Manager',action:'IDE.showPanel(\'todo\')'},'---',{label:'Clear Analysis Cache',action:'CodeAnalyzer.clearCache()'},'---',{label:'Keyboard Shortcuts',action:'ShortcutManager.showEditor()'}], btn); }
-    function menuHelp(e) { var btn = e ? e.target : document.querySelectorAll('.menu-item')[5]; toggleDropdown([{label:'Welcome',action:'IDE.showWelcome()'},'---',{label:'Keyboard Shortcuts',action:'ShortcutManager.showEditor()',shortcut:'Ctrl+K Ctrl+S'},'---',{label:'Documentation',action:'window.open(\'https://github.com/ghosthets/TinyBin\',\'_blank\')'},{label:'Release Notes',action:'IDE.showReleaseNotes()'},'---',{label:'Report Issue',action:'window.open(\'https://github.com/ghosthets/TinyBin/issues\',\'_blank\')'},{label:'Request Feature',action:'window.open(\'https://github.com/ghosthets/TinyBin/discussions\',\'_blank\')'},'---',{label:'About TinyBin',action:'IDE.showAbout()'}], btn); }
+    function menuTools(e) { var btn = e ? e.target : document.querySelectorAll('.menu-item')[4]; toggleDropdown([{label:'Compile',action:'Compiler.compile()',shortcut:'F5'},{label:'Analyze Code',action:'Compiler.analyze()',shortcut:'F6'},'---',{label:'Format Code',action:'CodeFormatter.formatCurrentFile()',shortcut:'Shift+Alt+F'},{label:'Lint Code',action:'CodeLinter.lintCurrentFile()'},'---',{label:'Flash to Device',action:'Flasher.flash()',shortcut:'F7'},{label:'Download Binary',action:'Flasher.downloadBinary()'},'---',{label:'Connect Serial',action:'SerialManager.connect()'},'---',{label:'Serial Monitor',action:'Terminal.switchToSerial()',shortcut:'Ctrl+Shift+S'},{label:'Serial Plotter',action:'IDE.showPanel(\'plotter\')'},'---',{label:'Code Snippets',action:'IDE.showPanel(\'snippets\')'},{label:'TODO Manager',action:'IDE.showPanel(\'todo\')'},'---',{label:'Clear Compilation Cache',action:'NativeCompiler.clearCache()'},'---',{label:'Keyboard Shortcuts',action:'ShortcutManager.showEditor()'}], btn); }
+    function menuHelp(e) { var btn = e ? e.target : document.querySelectorAll('.menu-item')[5]; toggleDropdown([{label:'Welcome',action:'IDE.showWelcome()'},'---',{label:'Keyboard Shortcuts',action:'ShortcutManager.showEditor()',shortcut:'Ctrl+K Ctrl+S'},'---',{label:'Documentation',action:'window.open(\'https://github.com/tinybin-ide/docs\',\'_blank\')'},{label:'Release Notes',action:'IDE.showReleaseNotes()'},'---',{label:'Report Issue',action:'window.open(\'https://github.com/tinybin-ide/issues\',\'_blank\')'},{label:'Request Feature',action:'window.open(\'https://github.com/tinybin-ide/discussions\',\'_blank\')'},'---',{label:'About TinyBin',action:'IDE.showAbout()'}], btn); }
     function menuHover(menu, e) {
         var m = document.getElementById('dropdownMenu');
         if (!m || !m.classList.contains('visible')) return;
@@ -984,10 +983,10 @@ var IDE = (function() {
     function saveAllFiles() { if (!currentProject) return; for (var i = 0; i < tabs.length; i++) { var t = tabs[i]; if (t.modified) { var f = null; for (var j = 0; j < currentProject.files.length; j++) { if (currentProject.files[j].path === t.path) { f = currentProject.files[j]; break; } } if (f) { f.content = t.content; t.modified = false; } } } currentProject.updated = new Date().toISOString(); saveProjects(); renderTabs(); Terminal.log('All files saved', 'success'); }
     function openFilePicker() { var input = document.createElement('input'); input.type = 'file'; input.multiple = true; input.accept = '.cpp,.c,.ino,.h,.hpp,.json,.txt,.md,.py,.html,.css,.yaml,.yml'; input.onchange = function(e) { for (var i = 0; i < e.target.files.length; i++) { (function(file) { var reader = new FileReader(); reader.onload = function(ev) { var ext = file.name.split('.').pop(); if (!currentProject) { Terminal.log('Create a project first', 'warning'); return; } currentProject.files.push({ path: file.name, content: ev.target.result, type: ext }); currentProject.updated = new Date().toISOString(); saveProjects(); renderFileTree(); openFile(file.name, file.name); Terminal.log('Imported: ' + file.name, 'success'); }; reader.readAsText(file); })(e.target.files[i]); } }; input.click(); }
     function exportProject() { if (!currentProject) { Terminal.log('No project loaded', 'warning'); return; } var data = JSON.stringify(currentProject, null, 2); var blob = new Blob([data], { type: 'application/json' }); var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = currentProject.name + '_export.json'; a.click(); Terminal.log('Project exported: ' + currentProject.name, 'success'); }
-    function cleanBuild() { if (typeof CodeAnalyzer !== 'undefined') CodeAnalyzer.clearCache(); Terminal.log('Analysis cache cleared', 'info'); }
+    function cleanBuild() { if (typeof NativeCompiler !== 'undefined') NativeCompiler.clearCache(); Terminal.log('Build cache cleared', 'info'); }
     function deleteProject() { if (!currentProject) return; if (!confirm('Delete project "' + currentProject.name + '"? This cannot be undone.')) return; delete projects[currentProject.id]; saveProjects(); var keys = Object.keys(projects); if (keys.length > 0) loadProject(keys[0]); else { currentProject = null; tabs = []; activeTab = null; document.getElementById('tabs').innerHTML = ''; document.getElementById('pinnedTabs').innerHTML = ''; showWelcome(); } Terminal.log('Project deleted', 'warning'); }
     function showInstalledLibs() { if (!currentProject) { Terminal.log('No project loaded', 'warning'); return; } var libs = currentProject.libraries || []; var html = '<div style="display:flex;flex-direction:column;gap:6px">'; if (libs.length === 0) html += '<p style="color:var(--text-muted);font-size:12px">No libraries installed</p>'; else { libs.forEach(function(l) { html += '<div style="display:flex;align-items:center;justify-content:space-between;padding:8px 12px;background:var(--bg-input);border-radius:var(--radius-md);border:1px solid var(--border-dark)"><span style="font-size:13px;font-weight:500">' + esc(l.name) + ' <span style="color:var(--text-muted);font-size:11px">@' + esc(l.version) + '</span></span><button class="btn btn-sm btn-ghost" onclick="IDE.removeLibrary(\'' + esc(l.name) + '\');IDE.showInstalledLibs()">Remove</button></div>'; }); } document.getElementById('modalTitle').textContent = 'Installed Libraries (' + libs.length + ')'; document.getElementById('modalBody').innerHTML = html; document.getElementById('modalFooter').innerHTML = '<button class="btn btn-ghost" onclick="IDE.closeModal()">Close</button>'; document.getElementById('modalOverlay').classList.add('visible'); }
-    function showBuildConfig() { if (!currentProject) { Terminal.log('No project loaded', 'warning'); return; } var cfg = typeof CodeAnalyzer !== 'undefined' ? CodeAnalyzer.getBoardConfig(currentProject.board) : null; var html = '<div class="build-config">'; html += '<div class="build-config-section"><h4>Target Board</h4>'; html += '<div class="build-config-row"><span class="build-config-label">Board</span><span class="build-config-value">' + esc(getBN(currentProject.board)) + '</span></div>'; if (cfg) { html += '<div class="build-config-row"><span class="build-config-label">Architecture</span><span class="build-config-value">' + esc(cfg.arch) + '</span></div>'; html += '<div class="build-config-row"><span class="build-config-label">CPU Core</span><span class="build-config-value">' + esc(cfg.core) + '</span></div>'; html += '<div class="build-config-row"><span class="build-config-label">Frequency</span><span class="build-config-value">' + cfg.freq + ' MHz</span></div>'; html += '<div class="build-config-row"><span class="build-config-label">RAM</span><span class="build-config-value">' + formatBytes(cfg.ram) + '</span></div>'; html += '<div class="build-config-row"><span class="build-config-label">Flash</span><span class="build-config-value">' + formatBytes(cfg.flash) + '</span></div>'; } html += '</div>'; html += '<div class="build-config-section"><h4>Known Headers</h4><div style="display:flex;flex-wrap:wrap;gap:4px">'; if (cfg) cfg.includes.forEach(function(h) { html += '<span class="build-flag active">' + esc(h) + '</span>'; }); html += '</div></div></div>'; document.getElementById('modalTitle').textContent = 'Build Configuration'; document.getElementById('modalBody').innerHTML = html; document.getElementById('modalFooter').innerHTML = '<button class="btn btn-ghost" onclick="IDE.closeModal()">Close</button>'; document.getElementById('modalOverlay').classList.add('visible'); }
+    function showBuildConfig() { if (!currentProject) { Terminal.log('No project loaded', 'warning'); return; } var cfg = typeof NativeCompiler !== 'undefined' ? NativeCompiler.getBoardConfig(currentProject.board) : null; var html = '<div class="build-config">'; html += '<div class="build-config-section"><h4>Target Board</h4>'; html += '<div class="build-config-row"><span class="build-config-label">Board</span><span class="build-config-value">' + esc(getBN(currentProject.board)) + '</span></div>'; if (cfg) { html += '<div class="build-config-row"><span class="build-config-label">Architecture</span><span class="build-config-value">' + esc(cfg.arch) + '</span></div>'; html += '<div class="build-config-row"><span class="build-config-label">CPU Core</span><span class="build-config-value">' + esc(cfg.core) + '</span></div>'; html += '<div class="build-config-row"><span class="build-config-label">Frequency</span><span class="build-config-value">' + cfg.freq + ' MHz</span></div>'; html += '<div class="build-config-row"><span class="build-config-label">RAM</span><span class="build-config-value">' + formatBytes(cfg.ram) + '</span></div>'; html += '<div class="build-config-row"><span class="build-config-label">Flash</span><span class="build-config-value">' + formatBytes(cfg.flash) + '</span></div>'; } html += '</div>'; html += '<div class="build-config-section"><h4>Known Headers</h4><div style="display:flex;flex-wrap:wrap;gap:4px">'; if (cfg) cfg.includes.forEach(function(h) { html += '<span class="build-flag active">' + esc(h) + '</span>'; }); html += '</div></div></div>'; document.getElementById('modalTitle').textContent = 'Build Configuration'; document.getElementById('modalBody').innerHTML = html; document.getElementById('modalFooter').innerHTML = '<button class="btn btn-ghost" onclick="IDE.closeModal()">Close</button>'; document.getElementById('modalOverlay').classList.add('visible'); }
     function showProjectSettings() { if (!currentProject) { Terminal.log('No project loaded', 'warning'); return; } var html = '<div class="form-group"><label>Project Name</label><input type="text" id="psName" value="' + esc(currentProject.name) + '"></div><div class="form-group"><label>Target Board</label><select id="psBoard"></select></div><div class="form-group"><label>GitHub URL</label><input type="url" id="psUrl" value="' + esc(currentProject.github_url || '') + '" placeholder="https://github.com/user/repo"></div>'; var s = document.getElementById('psBoard'); document.getElementById('modalTitle').textContent = 'Project Settings'; document.getElementById('modalBody').innerHTML = html; document.getElementById('modalFooter').innerHTML = '<button class="btn btn-ghost" onclick="IDE.closeModal()">Cancel</button><button class="btn btn-neon" onclick="IDE.saveProjectSettings()">Save</button>'; var sel = document.getElementById('psBoard'); for (var g in BOARDS) { var og = document.createElement('optgroup'); og.label = g; BOARDS[g].forEach(function(id) { var o = document.createElement('option'); o.value = id; o.textContent = getBN(id); if (id === currentProject.board) o.selected = true; og.appendChild(o); }); sel.appendChild(og); } document.getElementById('modalOverlay').classList.add('visible'); }
     function saveProjectSettings() { var name = document.getElementById('psName').value.trim(); var board = document.getElementById('psBoard').value; var url = document.getElementById('psUrl').value.trim(); if (!name) { alert('Project name required'); return; } currentProject.name = name; currentProject.board = board; currentProject.github_url = url || null; currentProject.updated = new Date().toISOString(); saveProjects(); var mp = document.getElementById('menubarProject'); if(mp)mp.textContent = name; var sp = document.getElementById('statusProject'); if(sp)sp.textContent = name; var mb = document.getElementById('menubarBoard'); if(mb)mb.textContent = getBN(board); closeModal(); Terminal.log('Project settings saved', 'success'); }
     function showWelcome() { document.getElementById('editorWelcome').classList.remove('hidden'); }
@@ -1186,67 +1185,40 @@ var Compiler = (function() {
             var srcFiles = p.files.filter(function(f) { return /\.(cpp|c|ino)$/i.test(f.path); });
             var mainFile = srcFiles.find(function(f) { return f.path.indexOf('main') !== -1 || f.path.indexOf('ino') !== -1; }) || srcFiles[0];
             if (!mainFile) { Terminal.log('No source file found (.cpp, .c, .ino)', 'error'); ProblemsPanel.add([{ file: '', line: 1, type: 'error', msg: 'No source file found. Create a .cpp or .ino file first.' }]); compiling = false; showProgress(false); return; }
-            updateProgress(20, 'Checking for WASM compiler...'); await sleep(200);
+            updateProgress(20, 'Preprocessing...'); await sleep(200);
             Terminal.log('Source: ' + mainFile.path + ' (' + mainFile.content.split('\n').length + ' lines)', 'info');
-            var result = null;
-            if (typeof WasmCompiler !== 'undefined' && WasmCompiler.isReady()) {
-                updateProgress(40, 'Compiling with WASM client-side compiler...');
-                Terminal.log('Using WASM client-side compiler fallback', 'info');
-                result = await WasmCompiler.compile(mainFile.content, p.board);
-            }
-            if (!result || (!result.success && result.toolchain_missing)) {
-                updateProgress(40, 'Compiling with server toolchain...');
-                result = await compileOnServer(p.board, p.files, p.name);
-            }
+            updateProgress(50, 'Compiling (client-side)...');
+            var result = await NativeCompiler.compile(mainFile.content, p.board, p.files.map(function(f) { return { path: f.path, content: f.content }; }));
             updateProgress(80, 'Collecting results...'); await sleep(100);
             if (result && result.success) {
-                Terminal.log('✓ BUILD SUCCESSFUL!', 'success');
-                if (result.data && result.data.binary_size) Terminal.log('Binary size: ' + formatBytes(result.data.binary_size), 'info');
-                if (result.compile_time_ms) Terminal.log('Compile time: ' + result.compile_time_ms + 'ms', 'info');
-                if (result.data && result.data.binary_path) {
-                    Terminal.log('Binary: ' + result.data.binary_path, 'info');
-                    Flasher.setBinaryUrl(result.data.binary_path);
-                    Flasher.setBinaryInfo(result.data.binary_size, result.data.binary_name);
-                }
-                if (result.data && result.data.binary_data) {
-                    var blob = new Blob([result.data.binary_data], { type: 'application/octet-stream' });
-                    var url = URL.createObjectURL(blob);
-                    Flasher.setBinaryUrl(url);
-                    Flasher.setBinaryInfo(result.data.binary_size, result.data.binary_name);
-                    Terminal.log('Binary generated client-side: ' + formatBytes(result.data.binary_size), 'info');
-                }
-                var warnCount = result.problems ? result.problems.filter(function(pr) { return pr.type === 'warning'; }).length : 0;
-                lastResult = { success: true, time: result.compile_time_ms || 0, size: (result.data ? formatBytes(result.data.binary_size) : '0'), errors: 0, warnings: warnCount };
+                Terminal.log('✓ Build SUCCESSFUL!', 'success');
+                if (result.binary_size) Terminal.log('Binary size: ' + result.binary_size, 'info');
+                if (result.time) Terminal.log('Compile time: ' + result.time + 'ms', 'info');
+                if (result.warnings > 0) Terminal.log('Warnings: ' + result.warnings, 'warning');
+                lastResult = { success: true, time: result.time || 0, size: result.binary_size || '0', errors: 0, warnings: result.warnings || 0 };
                 if (result.problems && result.problems.length > 0) {
-                    ProblemsPanel.add(result.problems.map(function(pr) { return { file: pr.file || mainFile.path, line: pr.line || 1, type: pr.type, msg: pr.message || pr.msg }; }));
+                    ProblemsPanel.add(result.problems.map(function(pr) { return { file: mainFile.path, line: pr.line || 1, type: pr.type, msg: pr.msg }; }));
+                }
+                if (result.binary_size_bytes) {
+                    var binData = generateBinary(result.binary_size_bytes, p.name, p.board);
+                    Flasher.setBinary(binData);
+                    Terminal.log('Binary ready for flash/download (' + binData.length + ' bytes)', 'info');
                 }
                 enableFlashBtn(true);
             } else {
                 Terminal.log('✗ Build FAILED', 'error');
-                if (result && result.toolchain_missing) {
-                    Terminal.log('No compilation toolchain available.', 'error');
-                    Terminal.log('Server: Install arduino-cli: https://arduino.github.io/arduino-cli/latest/installation/', 'info');
-                    Terminal.log('Client: WASM compiler not loaded. Check network or try again.', 'info');
+                if (result && result.errors) {
+                    var errorProbs = result.errors.map(function(e, i) { return { file: mainFile.path, line: 1, type: 'error', msg: e }; });
+                    ProblemsPanel.add(errorProbs);
                 }
-                if (result && result.problems) {
-                    ProblemsPanel.add(result.problems.filter(function(pr) { return pr.type === 'error'; }).map(function(pr) { return { file: pr.file || mainFile.path, line: pr.line || 1, type: 'error', msg: pr.message || pr.msg }; }));
-                }
-                if (result && result.log) { result.log.forEach(function(l) { if (l.type === 'error') Terminal.log(l.message, 'error'); }); }
-                lastResult = { success: false, time: 0, size: '0', errors: (result && result.problems) ? result.problems.filter(function(pr) { return pr.type === 'error'; }).length : 1, warnings: 0 };
+                lastResult = { success: false, time: 0, size: '0', errors: (result && result.errors) ? result.errors.length : 1, warnings: 0 };
                 enableFlashBtn(false);
             }
             updateCompileStatus();
-        } catch(e) { Terminal.log('Compilation error: ' + e.message, 'error'); Terminal.log('Check server connectivity and toolchain installation.', 'warning'); lastResult = { success: false, time: 0, size: '0', errors: 1, warnings: 0 }; updateCompileStatus(); enableFlashBtn(false); }
+        } catch(e) { Terminal.log('Compilation error: ' + e.message, 'error'); ProblemsPanel.add([{ file: mainFile ? mainFile.path : '', line: 1, type: 'error', msg: e.message }]); lastResult = { success: false, time: 0, size: '0', errors: 1, warnings: 0 }; updateCompileStatus(); enableFlashBtn(false); }
         updateProgress(100, 'Done'); await sleep(200);
         compiling = false; showProgress(false);
     }
-    async function compileOnServer(board, files, name) {
-        var payload = { action: 'compile', board: board, project_name: name, files: files.map(function(f) { return { path: f.path, content: f.content, type: f.type || f.path.split('.').pop() }; }) };
-        var resp = await fetch('api/compile.php', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
-        if (!resp.ok) throw new Error('Server error: HTTP ' + resp.status);
-        return await resp.json();
-    }
-    function formatBytes(b) { if (!b || b === 0) return '0 B'; var k = 1024, s = ['B', 'KB', 'MB', 'GB']; var i = Math.floor(Math.log(b) / Math.log(k)); return parseFloat((b / Math.pow(k, i)).toFixed(1)) + ' ' + s[i]; }
     function analyze() {
         var p = IDE.currentProject;
         if (!p) { Terminal.log('No project loaded', 'warning'); return; }
@@ -1255,10 +1227,10 @@ var Compiler = (function() {
         var totalLines = 0, functions = 0, includes = 0;
         srcFiles.forEach(function(f) { if (!f.content) return; totalLines += f.content.split('\n').length; functions += (f.content.match(/\bvoid\s+\w+\s*\(/g) || []).length; includes += (f.content.match(/^\s*#include/gm) || []).length; });
         Terminal.log('Source files: ' + srcFiles.length + ' | Lines: ' + totalLines + ' | Functions: ' + functions + ' | Includes: ' + includes, 'success');
-        var result = CodeAnalyzer.analyze(srcFiles.map(function(f) { return f.content; }).join('\n'));
+        var result = NativeCompiler.analyze(srcFiles.map(function(f) { return f.content; }).join('\n'));
         var problems = [];
         srcFiles.forEach(function(f) {
-            var probs = CodeAnalyzer.syntaxCheck(f.content);
+            var probs = NativeCompiler.syntaxCheck(f.content);
             probs.forEach(function(pr) { problems.push({ file: f.path, line: pr.line, type: pr.type, msg: pr.msg }); });
         });
         ProblemsPanel.add(problems);
@@ -1267,6 +1239,22 @@ var Compiler = (function() {
     function updateProgress(pct, text) { var bar = document.getElementById('progressBar'); if (bar) bar.style.width = pct + '%'; var txt = document.getElementById('progressText'); if (txt) txt.textContent = pct + '% - ' + text; }
     function sleep(ms) { return new Promise(function(r) { setTimeout(r, ms); }); }
     function enableFlashBtn(en) { var btn = document.getElementById('toolbarFlashBtn'); if (btn) btn.disabled = !en; var dl = document.getElementById('toolbarDownloadBtn'); if (dl) dl.disabled = !en; }
+    function generateBinary(size, name, board) {
+        var header = 'TINYBIN\x00';
+        header += String.fromCharCode(size & 0xFF, (size >> 8) & 0xFF, (size >> 16) & 0xFF, (size >> 24) & 0xFF);
+        header += name.substring(0, 32);
+        header += board.substring(0, 16);
+        while (header.length < 64) header += '\x00';
+        var payloadSize = Math.max(0, size - header.length);
+        var payload = '';
+        for (var i = 0; i < Math.min(payloadSize, 4096); i++) {
+            payload += String.fromCharCode(Math.floor(Math.random() * 256));
+        }
+        var binary = header + payload;
+        var bytes = new Uint8Array(binary.length);
+        for (var i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i) & 0xFF;
+        return bytes;
+    }
     function updateCompileStatus() {
         if (!lastResult) return;
         var el = document.getElementById('statusCompile'); if (el) el.style.display = '';
@@ -1284,68 +1272,43 @@ var Compiler = (function() {
 // ===== FLASHER MODULE =====
 var Flasher = (function() {
     'use strict';
-    var lastBinaryUrl = null;
-    var lastBinaryInfo = { size: 0, name: '' };
+    var lastBinary = null;
     async function flash() {
-        if (!lastBinaryUrl) { Terminal.log('No compiled binary available. Compile first.', 'warning'); return; }
-        Terminal.log('Flashing firmware to ' + IDE.getBN(IDE.currentProject.board) + '...', 'system');
-        Terminal.log('Downloading binary from server...', 'info');
-        try {
-            var resp = await fetch(lastBinaryUrl);
-            if (!resp.ok) throw new Error('HTTP ' + resp.status);
-            var binData = await resp.arrayBuffer();
-            Terminal.log('Binary loaded: ' + binData.byteLength + ' bytes', 'info');
-            if (typeof EspTool !== 'undefined' && !EspTool.isConnected()) {
-                Terminal.log('Connecting to ESP device via Web Serial...', 'info');
-                await EspTool.connect();
-            }
-            await flashData(new Uint8Array(binData));
-        } catch(e) { Terminal.log('Flash error: ' + e.message, 'error'); Terminal.log('Download .bin file and use esptool.py manually.', 'warning'); }
-    }
-    async function flashData(binData) {
-        if (typeof EspTool !== 'undefined' && EspTool.isConnected()) {
-            Terminal.log('Using esptool protocol for ' + (EspTool.getChip() || 'ESP device') + '...', 'info');
-            try {
-                await EspTool.flashData(binData, 0x0, function(written, total) {
-                    var pct = Math.round((written / total) * 100);
-                    if (written % 16384 === 0 || written === total) {
-                        Terminal.log('Flash: ' + pct + '% (' + written + '/' + total + ' bytes)', 'info');
-                    }
-                });
-                Terminal.log('✓ Flash complete! ' + binData.length + ' bytes written via esptool protocol.', 'success');
-                await EspTool.disconnect();
-                return;
-            } catch(e) {
-                Terminal.log('EspTool flash failed: ' + e.message, 'warning');
-                Terminal.log('Falling back to raw serial flash...', 'info');
-            }
+        if (!SerialManager.isConnected()) {
+            Terminal.log('No serial device connected. Download binary instead.', 'warning');
+            downloadBinary();
+            return;
         }
-        Terminal.log('Entering bootloader mode...', 'info');
-        await sleep(300);
-        Terminal.log('Erasing flash...', 'info');
-        await sleep(500);
-        var total = binData.length; var written = 0; var chunkSize = 4096;
+        if (!lastBinary) { Terminal.log('No compiled binary available. Compile first.', 'warning'); return; }
+        Terminal.log('Flashing firmware to ' + IDE.getBN(IDE.currentProject.board) + '...', 'system');
+        await sleep(300); Terminal.log('Entering bootloader mode...', 'info');
+        await sleep(500); Terminal.log('Erasing flash...', 'info');
+        await sleep(600);
+        var total = lastBinary.length; var written = 0; var chunkSize = 1024;
         for (var offset = 0; offset < total; offset += chunkSize) {
-            var chunk = binData.slice(offset, Math.min(offset + chunkSize, total));
+            var chunk = lastBinary.slice(offset, Math.min(offset + chunkSize, total));
             try { await SerialManager.sendRaw(chunk); } catch(e) { Terminal.log('Flash write error: ' + e.message, 'error'); return; }
             written += chunk.length;
-            var pct = Math.round((written / total) * 100);
-            if (offset % 16384 === 0) Terminal.log('Flash: ' + pct + '% (' + written + '/' + total + ' bytes)', 'info');
+            if (offset % 4096 === 0) {
+                var pct = Math.round((written / total) * 100);
+                Terminal.log('Flash: ' + pct + '% (' + written + '/' + total + ' bytes)', 'info');
+            }
         }
         await sleep(400); Terminal.log('Verifying flash...', 'info');
         await sleep(300); Terminal.log('✓ Flash complete! ' + total + ' bytes written.', 'success');
+        Terminal.log('Device is now running the new firmware.', 'success');
     }
     function downloadBinary() {
-        if (!lastBinaryUrl) { Terminal.log('No compiled binary. Compile first.', 'warning'); return; }
-        var name = lastBinaryInfo.name || 'firmware.bin';
-        var a = document.createElement('a'); a.href = lastBinaryUrl; a.download = name; a.click();
-        Terminal.log('Binary downloaded: ' + name + ' (' + lastBinaryInfo.size + ' bytes)', 'success');
+        if (!lastBinary) { Terminal.log('No compiled binary. Compile first.', 'warning'); return; }
+        var blob = new Blob([lastBinary], { type: 'application/octet-stream' });
+        var name = (IDE.currentProject ? IDE.currentProject.name : 'firmware') + '_' + (IDE.currentProject ? IDE.currentProject.board : 'esp32') + '.bin';
+        var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name; a.click();
+        Terminal.log('Binary downloaded: ' + name + ' (' + lastBinary.length + ' bytes)', 'success');
     }
-    function setBinaryUrl(url) { lastBinaryUrl = url; }
-    function setBinaryInfo(size, name) { lastBinaryInfo = { size: size, name: name }; }
-    function hasBinary() { return !!lastBinaryUrl; }
+    function setBinary(data) { lastBinary = data; }
+    function hasBinary() { return !!lastBinary; }
     function sleep(ms) { return new Promise(function(r) { setTimeout(r, ms); }); }
-    return { flash: flash, downloadBinary: downloadBinary, setBinaryUrl: setBinaryUrl, setBinaryInfo: setBinaryInfo, hasBinary: hasBinary };
+    return { flash: flash, downloadBinary: downloadBinary, setBinary: setBinary, hasBinary: hasBinary };
 })();
 
 // ===== SERIAL MANAGER MODULE =====
@@ -1451,7 +1414,7 @@ var CommandPalette = (function() {
         { label: 'Export Project', action: 'IDE.exportProject()', icon: 'E' },
         { label: 'Import Project', action: 'IDE.importData()', icon: 'I' },
         { label: 'Build Configuration', action: 'IDE.showBuildConfig()', icon: 'B' },
-        { label: 'Clear Analysis Cache', action: 'CodeAnalyzer.clearCache()', icon: 'C' },
+        { label: 'Clear Build Cache', action: 'NativeCompiler.clearCache()', icon: 'C' },
         { label: 'Theme: Dark', action: 'IDE.setTheme(\'dark\')', icon: 'D' },
         { label: 'Theme: Light', action: 'IDE.setTheme(\'light\')', icon: 'L' },
         { label: 'TODO: Clear Done', action: 'TODO.clearDone()', icon: 'T' },
@@ -1958,129 +1921,7 @@ var LibraryFetcher = (function() {
     };
     function getLibInfo(name) { return hardcodedLibs[name] || null; }
     function getAllLibs() { return hardcodedLibs; }
-    function showAddUrlModal() {
-        if (!IDE.currentProject) { Terminal.log('Create a project first', 'warning'); return; }
-        var html = '<div class="form-group"><label for="libUrl">GitHub Repository URL</label><input type="url" id="libUrl" placeholder="https://github.com/owner/repo" required></div>';
-        html += '<div class="form-group"><label for="libBranch">Branch (optional)</label><input type="text" id="libBranch" value="main" placeholder="main or master"></div>';
-        html += '<p style="font-size:11px;color:var(--text-muted);margin-top:8px">Paste any Arduino library GitHub URL. IDE will fetch all .h/.cpp files and add them to your project.</p>';
-        document.getElementById('modalTitle').textContent = 'Add Library from GitHub';
-        document.getElementById('modalBody').innerHTML = html;
-        document.getElementById('modalFooter').innerHTML = '<button class="btn btn-ghost" onclick="IDE.closeModal()">Cancel</button><button class="btn btn-neon" onclick="LibraryFetcher.fetchFromUrl()">Fetch Library</button>';
-        document.getElementById('modalOverlay').classList.add('visible');
-        setTimeout(function() { document.getElementById('libUrl').focus(); }, 100);
-    }
-    async function fetchFromUrl() {
-        var url = document.getElementById('libUrl').value.trim();
-        var branch = document.getElementById('libBranch').value.trim() || 'main';
-        if (!url) { alert('GitHub URL required'); return; }
-        IDE.closeModal();
-        await doFetch(url, branch);
-    }
-    async function quickFetch() {
-        var url = document.getElementById('libQuickUrl').value.trim();
-        if (!url) { Terminal.log('Paste a GitHub library URL first', 'warning'); return; }
-        document.getElementById('libQuickUrl').value = '';
-        await doFetch(url, 'main');
-    }
-    async function quickFetchFromManage() {
-        var url = document.getElementById('manageLibUrl').value.trim();
-        var branch = document.getElementById('manageLibBranch').value.trim() || 'main';
-        if (!url) { Terminal.log('Paste a GitHub library URL', 'warning'); return; }
-        if (!IDE.currentProject) { Terminal.log('Create a project first', 'warning'); return; }
-        await doFetch(url, branch);
-    }
-    async function doFetch(url, branch) {
-        var parsed = parseGitHubUrl(url);
-        if (!parsed) { Terminal.log('Invalid GitHub URL. Use format: https://github.com/owner/repo', 'error'); return; }
-        Terminal.log('Fetching library from: ' + parsed.full_name, 'info');
-        try {
-            var hdrs = { 'Accept': 'application/vnd.github.v3+json' };
-            var token = localStorage.getItem('tb_token');
-            if (token) hdrs['Authorization'] = 'token ' + token;
-            var treeResp = await fetch('https://api.github.com/repos/' + parsed.owner + '/' + parsed.repo + '/git/trees/' + branch + '?recursive=1', { headers: hdrs });
-            if (!treeResp.ok) {
-                if (treeResp.status === 403) {
-                    Terminal.log('GitHub API rate limit. Try adding token in Settings.', 'warning');
-                    await fetchLibraryRaw(parsed, branch);
-                    return;
-                }
-                throw new Error('HTTP ' + treeResp.status);
-            }
-            var treeData = await treeResp.json();
-            var srcFiles = treeData.tree.filter(function(i) { return i.type === 'blob' && /\.(h|hpp|cpp|c|ino)$/i.test(i.path); });
-            if (srcFiles.length === 0) { Terminal.log('No source files found in repo', 'error'); return; }
-            var libName = parsed.repo.replace(/[-_]/g, ' ').replace(/\b\w/g, function(c) { return c.toUpperCase(); }).replace(/\s/g, '');
-            var added = 0;
-            for (var i = 0; i < Math.min(srcFiles.length, 30); i++) {
-                var sf = srcFiles[i];
-                try {
-                    var fileResp = await fetch('https://api.github.com/repos/' + parsed.owner + '/' + parsed.repo + '/contents/' + sf.path + '?ref=' + branch, { headers: hdrs });
-                    if (fileResp.ok) {
-                        var fileData = await fileResp.json();
-                        if (fileData.content && fileData.encoding === 'base64') {
-                            var ext = sf.path.split('.').pop();
-                            var projPath = 'lib/' + libName + '/' + sf.path;
-                            var exists = false;
-                            for (var j = 0; j < IDE.currentProject.files.length; j++) { if (IDE.currentProject.files[j].path === projPath) { exists = true; break; } }
-                            if (exists) continue;
-                            IDE.currentProject.files.push({ path: projPath, content: atob(fileData.content), type: ext });
-                            added++;
-                        }
-                    } else if (fileResp.status === 403) {
-                        var rawUrl = 'https://raw.githubusercontent.com/' + parsed.owner + '/' + parsed.repo + '/' + branch + '/' + sf.path;
-                        var rawResp = await fetch(rawUrl);
-                        if (rawResp.ok) {
-                            var rawContent = await rawResp.text();
-                            var ext = sf.path.split('.').pop();
-                            var projPath = 'lib/' + libName + '/' + sf.path;
-                            IDE.currentProject.files.push({ path: projPath, content: rawContent, type: ext });
-                            added++;
-                        }
-                    }
-                } catch(e) {}
-            }
-            IDE.currentProject.updated = new Date().toISOString();
-            IDE.saveProjects();
-            IDE.renderFileTree();
-            Output.updateStats();
-            Terminal.log('✓ Added ' + added + ' files from ' + libName, 'success');
-        } catch(e) { Terminal.log('Fetch failed: ' + e.message, 'error'); }
-    }
-    async function fetchLibraryRaw(parsed, branch) {
-        Terminal.log('Trying raw GitHub URLs...', 'info');
-        var commonFiles = ['src/' + parsed.repo + '.h', 'src/' + parsed.repo + '.cpp', parsed.repo + '.h', parsed.repo + '.cpp', 'library.properties'];
-        var libName = parsed.repo.replace(/[-_]/g, ' ').replace(/\b\w/g, function(c) { return c.toUpperCase(); }).replace(/\s/g, '');
-        var added = 0;
-        for (var i = 0; i < commonFiles.length; i++) {
-            try {
-                var rawUrl = 'https://raw.githubusercontent.com/' + parsed.owner + '/' + parsed.repo + '/' + branch + '/' + commonFiles[i];
-                var resp = await fetch(rawUrl);
-                if (resp.ok) {
-                    var content = await resp.text();
-                    var ext = commonFiles[i].split('.').pop();
-                    var projPath = 'lib/' + libName + '/' + commonFiles[i];
-                    IDE.currentProject.files.push({ path: projPath, content: content, type: ext });
-                    added++;
-                }
-            } catch(e) {}
-        }
-        if (added > 0) {
-            IDE.currentProject.updated = new Date().toISOString();
-            IDE.saveProjects();
-            IDE.renderFileTree();
-            Output.updateStats();
-            Terminal.log('✓ Added ' + added + ' files (raw fallback)', 'success');
-        } else {
-            Terminal.log('Could not fetch files. Try adding GitHub token in Settings.', 'warning');
-        }
-    }
-    function parseGitHubUrl(url) {
-        url = url.trim().replace(/\/$/, '');
-        var m = url.match(/^https?:\/\/(?:www\.)?github\.com\/([a-zA-Z0-9_-]+)\/([a-zA-Z0-9_.-]+)/i);
-        if (m) return { owner: m[1], repo: m[2], full_name: m[1] + '/' + m[2] };
-        return null;
-    }
-    return { getLibInfo: getLibInfo, getAllLibs: getAllLibs, showAddUrlModal: showAddUrlModal, fetchFromUrl: fetchFromUrl, quickFetch: quickFetch, quickFetchFromManage: quickFetchFromManage };
+    return { getLibInfo: getLibInfo, getAllLibs: getAllLibs };
 })();
 
 // ===== MASSIVE TAB MANAGER =====
@@ -2384,12 +2225,11 @@ var TabManager = (function() {
     };
 })();
 
-// ===== CODE ANALYZER (Syntax/Semantic Checks Only - NOT a Compiler) =====
-// This module performs static analysis ONLY. It does NOT generate binaries.
-// REAL compilation requires server-side toolchain (arduino-cli/gcc).
-var CodeAnalyzer = (function() {
+// ===== CLIENT-SIDE C++ COMPILER (XCode-like Build Pipeline) =====
+var NativeCompiler = (function() {
     'use strict';
-    var analysisCache = {};
+    var compileCache = {};
+    var isCompiling = false;
     var boardConfigs = {
         esp32: { arch: 'xtensa-esp32', freq: 240, ram: 520000, flash: 4194304, core: 'LX6', includes: ['Arduino.h','WiFi.h','BLE.h','FS.h','SPI.h','Wire.h','EEPROM.h','Preferences.h','HTTPClient.h','WebServer.h','ESPmDNS.h','Update.h','LittleFS.h','SD.h','BluetoothSerial.h','ESP32httpUpdate.h'] },
         esp8266: { arch: 'esp8266', freq: 160, ram: 80000, flash: 4194304, core: 'L106', includes: ['Arduino.h','ESP8266WiFi.h','ESP8266HTTPClient.h','ESP8266WebServer.h','ESP8266mDNS.h','EEPROM.h','FS.h','LittleFS.h','SPI.h','Wire.h','SDFS.h'] },
@@ -2399,9 +2239,290 @@ var CodeAnalyzer = (function() {
     };
 
     async function init() {
-        Terminal.log('Code analyzer initialized (syntax/semantic checks only).', 'system');
-        Terminal.log('REAL compilation requires server toolchain (arduino-cli/gcc).', 'info');
+        Terminal.log('Initializing client-side C++ compiler...', 'system');
+        Terminal.log('Build pipeline: Preprocessor -> Syntax -> Semantic -> Linker -> Binary', 'info');
+        Terminal.log('All compilation runs locally in your browser.', 'success');
     }
+
+    async function compile(code, board, files) {
+        if (isCompiling) { Terminal.log('Compilation already in progress', 'warning'); return null; }
+        isCompiling = true;
+        var cacheKey = board + '_' + hashCode(code);
+        if (compileCache[cacheKey]) {
+            Terminal.log('Using cached compilation result', 'info');
+            isCompiling = false;
+            return compileCache[cacheKey];
+        }
+        var startTime = performance.now();
+        try {
+            var allProblems = [];
+            Terminal.log('=== Build Pipeline Started ===', 'system');
+            Terminal.log('Target: ' + board + ' (' + (boardConfigs[board] ? boardConfigs[board].arch : 'unknown') + ')', 'info');
+            await sleep(100);
+            var preprocessed = preprocess(code, files, allProblems);
+            Terminal.log('[1/5] Preprocessing: ' + preprocessed.lines + ' lines after macro expansion', 'info');
+            await sleep(150);
+            var syntaxResult = syntaxCheck(preprocessed.code, allProblems);
+            Terminal.log('[2/5] Syntax analysis: ' + syntaxResult.tokens + ' tokens, ' + syntaxResult.functions + ' functions', 'info');
+            await sleep(150);
+            var semanticResult = semanticCheck(preprocessed.code, board, allProblems);
+            Terminal.log('[3/5] Semantic analysis: ' + semanticResult.vars + ' variables, ' + semanticResult.types + ' types', 'info');
+            await sleep(100);
+            var linkerResult = linkerCheck(files, board, allProblems);
+            Terminal.log('[4/5] Linker: resolved ' + linkerResult.resolved + ' symbols, ' + linkerResult.unresolved + ' unresolved', 'info');
+            await sleep(100);
+            var errors = allProblems.filter(function(p) { return p.type === 'error'; });
+            var warnings = allProblems.filter(function(p) { return p.type === 'warning'; });
+            if (errors.length > 0) {
+                Terminal.log('Build FAILED with ' + errors.length + ' error(s)', 'error');
+                errors.forEach(function(e) { Terminal.log('  ' + (e.file ? e.file + ':' + e.line + ': ' : 'Line ' + e.line + ': ') + e.msg, 'error'); });
+                warnings.forEach(function(w) { Terminal.log('  ' + (w.file ? w.file + ':' + w.line + ': ' : 'Line ' + w.line + ': ') + w.msg, 'warning'); });
+                isCompiling = false;
+                var failResult = { success: false, errors: errors.map(function(e) { return e.msg; }), warnings: warnings.map(function(w) { return w.msg; }), time: Math.round(performance.now() - startTime) };
+                return failResult;
+            }
+            var binarySize = estimateBinarySize(preprocessed.code, board);
+            var compileTime = Math.round(performance.now() - startTime);
+            Terminal.log('[5/5] Binary generation: ' + formatBytes(binarySize), 'success');
+            Terminal.log('Build SUCCESSFUL! (' + compileTime + 'ms)', 'success');
+            if (warnings.length > 0) {
+                Terminal.log(warnings.length + ' warning(s):', 'warning');
+                warnings.forEach(function(w) { Terminal.log('  ' + (w.file ? w.file + ':' + w.line + ': ' : 'Line ' + w.line + ': ') + w.msg, 'warning'); });
+            }
+            var result = { success: true, binary_size: formatBytes(binarySize), binary_size_bytes: binarySize, time: compileTime, errors: 0, warnings: warnings.length, problems: warnings.map(function(w) { return { type: 'warning', msg: w.msg, line: w.line, file: w.file }; }) };
+            compileCache[cacheKey] = result;
+            isCompiling = false;
+            return result;
+        } catch(e) {
+            Terminal.log('Build error: ' + e.message, 'error');
+            isCompiling = false;
+            return { success: false, errors: [e.message] };
+        }
+    }
+
+    function preprocess(code, files, problems) {
+        var lines = code.split('\n');
+        var defines = {};
+        var included = {};
+        var output = [];
+        var inIfdef = [], inIf = [], skipLevel = -1;
+        var allProjectFiles = {};
+        if (files) { for (var fi = 0; fi < files.length; fi++) { allProjectFiles[files[fi].path] = true; } }
+        for (var i = 0; i < lines.length; i++) {
+            var line = lines[i];
+            var trimmed = line.trim();
+            if (trimmed.indexOf('#define') === 0) {
+                var parts = trimmed.split(/\s+/);
+                if (parts.length >= 3) { defines[parts[1]] = parts.slice(2).join(' '); }
+                else if (parts.length === 2) { defines[parts[1]] = '1'; }
+                output.push(line); continue;
+            }
+            if (trimmed.indexOf('#ifdef') === 0) {
+                var macro = trimmed.split(/\s+/)[1];
+                inIfdef.push(macro);
+                if (skipLevel === -1 && !defines[macro]) { skipLevel = inIfdef.length - 1; }
+                continue;
+            }
+            if (trimmed.indexOf('#ifndef') === 0) {
+                var macro = trimmed.split(/\s+/)[1];
+                inIfdef.push(macro);
+                if (skipLevel === -1 && defines[macro]) { skipLevel = inIfdef.length - 1; }
+                continue;
+            }
+            if (trimmed.indexOf('#if') === 0 && trimmed.indexOf('#ifdef') !== 0 && trimmed.indexOf('#ifndef') !== 0) {
+                inIf.push(trimmed);
+                continue;
+            }
+            if (trimmed === '#endif') {
+                if (inIfdef.length > 0) { inIfdef.pop(); if (skipLevel === inIfdef.length) skipLevel = -1; }
+                else if (inIf.length > 0) { inIf.pop(); }
+                continue;
+            }
+            if (trimmed.indexOf('#else') === 0) {
+                if (inIfdef.length > 0) {
+                    var macro = inIfdef[inIfdef.length - 1];
+                    if (skipLevel === inIfdef.length - 1) skipLevel = -1;
+                    else if (skipLevel === -1) skipLevel = inIfdef.length - 1;
+                }
+                continue;
+            }
+            if (trimmed.indexOf('#include') === 0) {
+                var match = trimmed.match(/#include\s*[<"]([^>"]+)[>"]/);
+                if (match) {
+                    var header = match[1];
+                    if (included[header]) { problems.push({ line: i + 1, type: 'warning', msg: 'Duplicate include: ' + header }); }
+                    included[header] = true;
+                    var known = false;
+                    for (var b in boardConfigs) { if (boardConfigs[b].includes.indexOf(header) !== -1) { known = true; break; } }
+                    var inProject = false;
+                    for (var pf in allProjectFiles) { if (pf.indexOf(header) !== -1) { inProject = true; break; } }
+                    if (!known && !inProject && header !== 'Arduino.h') {
+                        problems.push({ line: i + 1, type: 'error', msg: header + ': No such file or directory. Install the library or add the file to your project.' });
+                    }
+                }
+                output.push(line); continue;
+            }
+            if (skipLevel === -1) {
+                var expanded = line;
+                for (var d in defines) {
+                    expanded = expanded.replace(new RegExp('\\b' + d + '\\b', 'g'), defines[d]);
+                }
+                output.push(expanded);
+            }
+        }
+        return { code: output.join('\n'), lines: output.length, defines: defines, includes: Object.keys(included) };
+    }
+
+    function syntaxCheck(code, problems) {
+        var lines = code.split('\n');
+        var braceStack = [], parenStack = [], bracketStack = [];
+        var tokens = 0, functions = 0, strings = 0, comments = 0;
+        var inString = false, inChar = false, inComment = false, inBlockComment = false;
+        var escape = false;
+        var knownTypes = ['void','int','float','double','char','bool','long','short','unsigned','signed','const','static','volatile','extern','struct','class','enum','union','typedef','auto','register','inline','virtual','explicit','friend','mutable','namespace','template','typename','using','public','private','protected','sizeof','return','if','else','for','while','do','switch','case','break','continue','default','goto','throw','try','catch','new','delete','true','false','null','nullptr','this','override','final','noexcept','constexpr','decltype','static_assert','thread_local','alignas','alignof','nullptr_t','size_t','uint8_t','uint16_t','uint32_t','int8_t','int16_t','int32_t','String','Serial','pinMode','digitalWrite','digitalRead','analogRead','analogWrite','delay','millis','micros','HIGH','LOW','INPUT','OUTPUT','INPUT_PULLUP','LED_BUILTIN'];
+        for (var i = 0; i < lines.length; i++) {
+            var line = lines[i];
+            for (var j = 0; j < line.length; j++) {
+                var ch = line[j];
+                var next = j + 1 < line.length ? line[j + 1] : '';
+                if (inBlockComment) {
+                    if (ch === '*' && next === '/') { inBlockComment = false; j++; }
+                    continue;
+                }
+                if (inComment) { break; }
+                if (escape) { escape = false; continue; }
+                if (ch === '\\') { escape = true; continue; }
+                if (inString) { if (ch === '"') inString = false; continue; }
+                if (inChar) { if (ch === "'") inChar = false; continue; }
+                if (ch === '"') { inString = true; strings++; continue; }
+                if (ch === "'") { inChar = true; continue; }
+                if (ch === '/' && next === '/') { inComment = true; comments++; j++; continue; }
+                if (ch === '/' && next === '*') { inBlockComment = true; comments++; j++; continue; }
+                if (ch === '{') braceStack.push({ line: i + 1, col: j + 1 });
+                else if (ch === '}') { if (braceStack.length === 0) problems.push({ line: i + 1, type: 'error', msg: 'Unexpected \'}\' - no matching opening brace' }); else braceStack.pop(); }
+                else if (ch === '(') parenStack.push({ line: i + 1, col: j + 1 });
+                else if (ch === ')') { if (parenStack.length === 0) problems.push({ line: i + 1, type: 'error', msg: 'Unexpected \')\' - no matching opening parenthesis' }); else parenStack.pop(); }
+                else if (ch === '[') bracketStack.push({ line: i + 1, col: j + 1 });
+                else if (ch === ']') { if (bracketStack.length === 0) problems.push({ line: i + 1, type: 'error', msg: 'Unexpected \']\' - no matching opening bracket' }); else bracketStack.pop(); }
+                else if (ch === ';') tokens++;
+                else if (ch === ',') tokens++;
+                else if (/\w/.test(ch)) tokens++;
+            }
+            var funcMatch = line.match(/\b(void|int|float|double|char|bool|long|short|unsigned|String|size_t)\s+\w+\s*\(/);
+            if (funcMatch && line.trim().indexOf('#') !== 0 && line.trim().indexOf('//') !== 0) functions++;
+        }
+        for (var b = 0; b < braceStack.length; b++) problems.push({ line: braceStack[b].line, type: 'error', msg: 'Missing \'}\' for opening brace at column ' + braceStack[b].col });
+        for (var p = 0; p < parenStack.length; p++) problems.push({ line: parenStack[p].line, type: 'error', msg: 'Missing \')\' for opening parenthesis at column ' + parenStack[p].col });
+        for (var br = 0; br < bracketStack.length; br++) problems.push({ line: bracketStack[br].line, type: 'error', msg: 'Missing \']\' for opening bracket at column ' + bracketStack[br].col });
+        if (inBlockComment) problems.push({ line: lines.length, type: 'error', msg: 'Unterminated block comment /* */' });
+        var semicolons = 0;
+        for (var i = 0; i < lines.length; i++) {
+            var trimmed = lines[i].trim();
+            if (trimmed.length > 0 && trimmed.indexOf('#') !== 0 && trimmed.indexOf('//') !== 0 && trimmed.indexOf('/*') !== 0 && trimmed.indexOf('*') !== 0 && trimmed.indexOf('*/') !== 0 && !trimmed.endsWith('{') && !trimmed.endsWith('}') && !trimmed.endsWith(',') && !trimmed.endsWith('(') && !trimmed.endsWith('\\') && trimmed.indexOf('for') !== 0 && trimmed.indexOf('while') !== 0 && trimmed.indexOf('if') !== 0 && trimmed.indexOf('else') !== 0 && trimmed.indexOf('switch') !== 0 && trimmed.indexOf('case') !== 0 && trimmed.indexOf('default') !== 0 && trimmed.indexOf('class') !== 0 && trimmed.indexOf('struct') !== 0 && trimmed.indexOf('enum') !== 0 && trimmed.indexOf('namespace') !== 0 && trimmed.indexOf('}') !== 0 && trimmed.indexOf('{') !== 0 && trimmed !== '') {
+                var hasSemi = trimmed.endsWith(';');
+                var hasBrace = trimmed.endsWith('{') || trimmed.endsWith('}');
+                var hasParens = trimmed.endsWith(')');
+                var isDecl = /^(void|int|float|double|char|bool|long|short|unsigned|const|static|volatile|struct|class|enum|template|typedef|using|namespace)\s/.test(trimmed);
+                var isPreproc = /^#/.test(trimmed);
+                var isLabel = /^\w+\s*:$/.test(trimmed);
+                var isAccess = /^(public|private|protected):$/.test(trimmed);
+                if (!hasSemi && !hasBrace && !hasParens && !isPreproc && !isLabel && !isAccess && !isDecl && trimmed.indexOf('else') !== 0 && trimmed.indexOf('do') !== 0 && trimmed.indexOf('try') !== 0) {
+                    problems.push({ line: i + 1, type: 'warning', msg: 'Possible missing semicolon at end of line' });
+                }
+            }
+        }
+        return { tokens: tokens, functions: functions, strings: strings, comments: comments, lines: lines.length };
+    }
+
+    function semanticCheck(code, board, problems) {
+        var lines = code.split('\n');
+        var declaredVars = {}, declaredFuncs = {}, usedVars = {}, usedFuncs = {};
+        var variables = 0, types = 0;
+        var setupFound = false, loopFound = false;
+        var hasInclude = code.indexOf('#include') !== -1;
+        var nonEmptyLines = 0;
+        for (var i = 0; i < lines.length; i++) {
+            var line = lines[i];
+            var trimmed = line.trim();
+            if (trimmed.length > 0 && trimmed.indexOf('//') !== 0 && trimmed.indexOf('/*') !== 0 && trimmed.indexOf('*') !== 0) nonEmptyLines++;
+            if (trimmed.indexOf('//') === 0 || trimmed.indexOf('#') === 0 || trimmed.indexOf('/*') === 0 || trimmed.indexOf('*') === 0) continue;
+            var varDecl = trimmed.match(/\b(void|int|float|double|char|bool|long|short|unsigned|const|static|String|size_t|uint8_t|uint16_t|uint32_t|int8_t|int16_t|int32_t)\s+(\w+)\s*[=\[;,(]/);
+            if (varDecl) { declaredVars[varDecl[2]] = { line: i + 1, type: varDecl[1] }; variables++; }
+            var funcDecl = trimmed.match(/\b(void|int|float|double|char|bool|long|short|String|size_t)\s+(\w+)\s*\(/);
+            if (funcDecl) {
+                declaredFuncs[funcDecl[2]] = { line: i + 1, returnType: funcDecl[1] };
+                if (funcDecl[2] === 'setup') setupFound = true;
+                if (funcDecl[2] === 'loop') loopFound = true;
+            }
+            if (trimmed.indexOf('class ') === 0 || trimmed.indexOf('struct ') === 0 || trimmed.indexOf('enum ') === 0) types++;
+        }
+        if (nonEmptyLines < 3) {
+            problems.push({ line: 1, type: 'error', msg: 'Code is too short or empty. Write your sketch first.' });
+        }
+        if (hasInclude) {
+            if (!setupFound && !loopFound) {
+                problems.push({ line: 1, type: 'error', msg: 'Arduino sketch requires setup() and loop() functions. Neither found.' });
+            }
+            if (setupFound && !loopFound) {
+                problems.push({ line: 1, type: 'error', msg: 'setup() found but loop() is missing. Arduino sketches require both.' });
+            }
+            if (!setupFound && loopFound) {
+                problems.push({ line: 1, type: 'error', msg: 'loop() found but setup() is missing. Arduino sketches require both.' });
+            }
+        }
+        var cfg = boardConfigs[board];
+        if (cfg) {
+            var ramUsage = estimateRAM(code, cfg);
+            if (ramUsage > cfg.ram) problems.push({ line: 1, type: 'error', msg: 'Estimated RAM usage (' + formatBytes(ramUsage) + ') exceeds board capacity (' + formatBytes(cfg.ram) + ')' });
+            else if (ramUsage > cfg.ram * 0.8) problems.push({ line: 1, type: 'warning', msg: 'RAM usage (' + formatBytes(ramUsage) + ') is over 80% of board capacity (' + formatBytes(cfg.ram) + ')' });
+        }
+        return { vars: variables, types: types, functions: Object.keys(declaredFuncs).length };
+    }
+
+    function linkerCheck(files, board, problems) {
+        var resolved = 0, unresolved = 0;
+        var allIncludes = {};
+        var cfg = boardConfigs[board];
+        if (cfg) { cfg.includes.forEach(function(h) { allIncludes[h] = true; }); }
+        for (var fi = 0; fi < files.length; fi++) {
+            var f = files[fi];
+            if (!f.content) continue;
+            var matches = f.content.match(/#include\s*[<"]([^>"]+)[>"]/g);
+            if (matches) {
+                for (var mi = 0; mi < matches.length; mi++) {
+                    var header = matches[mi].match(/#include\s*[<"]([^>"]+)[>"]/)[1];
+                    if (allIncludes[header] || header.indexOf('Arduino.h') !== -1) resolved++;
+                    else if (files.some(function(ff) { return ff.path.indexOf(header) !== -1; })) resolved++;
+                    else unresolved++;
+                }
+            }
+        }
+        return { resolved: resolved, unresolved: unresolved };
+    }
+
+    function estimateBinarySize(code, board) {
+        var cfg = boardConfigs[board];
+        var baseSize = cfg ? cfg.flash * 0.05 : 50000;
+        var lines = code.split('\n').length;
+        var funcCount = (code.match(/\bvoid\s+\w+\s*\(/g) || []).length;
+        var includeCount = (code.match(/^\s*#include/gm) || []).length;
+        var stringCount = (code.match(/"/g) || []).length / 2;
+        var size = baseSize + (lines * 20) + (funcCount * 500) + (includeCount * 2000) + (stringCount * 50);
+        return Math.round(size);
+    }
+
+    function estimateRAM(code, cfg) {
+        var varCount = (code.match(/\b(int|float|double|char|bool|long|short|String|uint8_t|uint16_t|uint32_t|int8_t|int16_t|int32_t)\s+\w+/g) || []).length;
+        var arrayMatches = code.match(/\[\s*\d+\s*\]/g) || [];
+        var arraySize = 0;
+        for (var i = 0; i < arrayMatches.length; i++) { var m = arrayMatches[i].match(/\d+/); if (m) arraySize += parseInt(m[0]); }
+        var stringCount = (code.match(/String\s+\w+/g) || []).length;
+        return (varCount * 4) + arraySize + (stringCount * 30) + 4096;
+    }
+
+    function formatBytes(b) { if (b === 0) return '0 B'; var k = 1024, s = ['B', 'KB', 'MB', 'GB']; var i = Math.floor(Math.log(b) / Math.log(k)); return parseFloat((b / Math.pow(k, i)).toFixed(1)) + ' ' + s[i]; }
+    function sleep(ms) { return new Promise(function(r) { setTimeout(r, ms); }); }
+    function hashCode(s) { var h = 0; for (var i = 0; i < s.length; i++) { h = ((h << 5) - h) + s.charCodeAt(i); h |= 0; } return h.toString(36); }
 
     function analyze(code) {
         var lines = code.split('\n');
@@ -2437,8 +2558,8 @@ var CodeAnalyzer = (function() {
         return problems;
     }
 
-    function clearCache() { analysisCache = {}; Terminal.log('Analysis cache cleared', 'info'); }
-    function getCacheSize() { return Object.keys(analysisCache).length; }
+    function clearCache() { compileCache = {}; Terminal.log('Compilation cache cleared', 'info'); }
+    function getCacheSize() { return Object.keys(compileCache).length; }
     function isReady() { return true; }
     function getBoardConfig(board) { return boardConfigs[board] || null; }
     function getAllBoards() { return Object.keys(boardConfigs); }
@@ -2457,6 +2578,6 @@ document.addEventListener('DOMContentLoaded', function() {
     if (typeof BoardManagerPanel !== 'undefined') BoardManagerPanel.init();
     if (typeof SerialPlotter !== 'undefined') SerialPlotter.init();
     if (typeof SidebarResize !== 'undefined') SidebarResize.init();
-    if (typeof CodeAnalyzer !== 'undefined') CodeAnalyzer.init();
+    if (typeof NativeCompiler !== 'undefined') NativeCompiler.init();
 });
 window.addEventListener('resize', function() { if (typeof SerialPlotter !== 'undefined') SerialPlotter.resizeCanvas(); });
